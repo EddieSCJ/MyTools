@@ -37,6 +37,32 @@ public class ManipularIdade {
 		return idade;
 	}
 
+	public static long Idade(String dataDeNascimento, String dataAtual) {
+		Date Hoje; // Vai receber a data atual
+		Date calcDataDeNascimento; // Variavel de calculo da data de nascimento
+		long idade;
+
+		try {
+			if(Integer.parseInt(dataDeNascimento.substring(0,2))<=31 && Integer.parseInt(dataDeNascimento.substring(0,2))>=1 &&
+			Integer.parseInt(dataDeNascimento.substring(3,5))<=12 && Integer.parseInt(dataDeNascimento.substring(3,5))>=1) {
+	
+			Hoje = sdf.parse(dataAtual); // Hoje recebe a String resultante da fun��o e o parse converte para Date
+			calcDataDeNascimento = sdf.parse(dataDeNascimento);
+			idade = (Hoje.getTime() - calcDataDeNascimento.getTime()) / 84600000 / 365; // calcula a idade em anos
+
+			}else {
+				return -1;
+			}
+		} catch (Exception e) {
+			System.out.println();
+			System.out.println("Erro: "+e);
+			System.out.println();
+			idade =-1;
+		}
+		return idade;
+	}
+	
+	
 	public static boolean validarIdade(String dataDeNascimento) {
 		long idade; // Idade a ser validade
 		try {
