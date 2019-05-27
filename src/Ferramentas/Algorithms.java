@@ -198,5 +198,9 @@ public class Algorithms {
 	
 }
 
-
+	public static double raizX(double numero, double radical) {
+		return (Math.pow(numero, 1/radical));
+	}
+	
+	
 }
