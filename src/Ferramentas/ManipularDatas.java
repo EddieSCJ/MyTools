@@ -1,8 +1,8 @@
 package Ferramentas;
 
-import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class ManipularDatas {
 
@@ -25,6 +25,40 @@ public class ManipularDatas {
 	 * 
 	 *         return dataModificada // retornando a nova data
 	 */
+	
+	public static boolean validarData(String data) {
+		//09/11/2001
+		try {
+		int dia = Integer.parseInt(data.substring(0,2));
+		int mes = Integer.parseInt(data.substring(3,5));
+		int ano = Integer.parseInt(data.substring(6,8));
+		if(mes==2) {
+			if(ano%4==0 ) {
+				if(dia>=1 && dia<=29) {
+					return true;
+				} else {
+					return false;
+				}
+			} else {
+				if(dia>=1 && dia<=29){
+					return true;
+				}else {
+					return false;
+				}
+			}
+			
+		}else if(ano%4!=0 && (mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12) && dia<=31 && dia>=1){
+			return true;
+		} else if(ano%4!=0 && (mes==2 || mes==4 || mes==6 || mes==8 || mes==11) && dia<=30 && dia>=1) {
+			return true;
+		} else {
+		return false;	
+		}
+		}catch(Exception e) {
+			return false;
+		}
+		
+	}
 
 	public static String iniciarData() {
 		String data;
@@ -32,31 +66,20 @@ public class ManipularDatas {
 		data = sdf.format(date);
 		return data;
 	}
-
-	public static boolean validarDiaEMes(String data) {
-
-		if (Integer.parseInt(data.substring(0, 2)) <= 31 && Integer.parseInt(data.substring(0, 2)) >= 1
-				&& Integer.parseInt(data.substring(3, 5)) <= 12 && Integer.parseInt(data.substring(3, 5)) >= 1) {
-			return true;
-		} else {
-			System.out.println("Data inválida");
-			return false;
-		}
-	}
-
+	
 	public static String adicionarAno(String data, int anos) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.YEAR, anos);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.YEAR, anos);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -68,17 +91,17 @@ public class ManipularDatas {
 
 	public static String removerAno(String data, int anos) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.YEAR, -anos);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.YEAR, -anos);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -90,17 +113,17 @@ public class ManipularDatas {
 
 	public static String adicionarSemanaNoAno(String data, int semanas) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.WEEK_OF_YEAR, semanas);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.WEEK_OF_YEAR, semanas);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -112,17 +135,17 @@ public class ManipularDatas {
 
 	public static String removerSemanaNoAno(String data, int semanas) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.WEEK_OF_YEAR, -semanas);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.WEEK_OF_YEAR, -semanas);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -134,17 +157,17 @@ public class ManipularDatas {
 
 	public static String adicionarSemanaNoMes(String data, int semanas) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.WEEK_OF_MONTH, semanas);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.WEEK_OF_MONTH, semanas);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -156,17 +179,17 @@ public class ManipularDatas {
 
 	public static String removerSemanaNoMes(String data, int semanas) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.WEEK_OF_MONTH, -semanas);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.WEEK_OF_MONTH, -semanas);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -178,17 +201,17 @@ public class ManipularDatas {
 
 	public static String adicionarMes(String data, int meses) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.MONTH, meses);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.MONTH, meses);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -200,17 +223,17 @@ public class ManipularDatas {
 
 	public static String removerMes(String data, int meses) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.MONTH, -meses);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.MONTH, -meses);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -222,17 +245,17 @@ public class ManipularDatas {
 
 	public static String adicionarDiaNoMes(String data, int diasAdicionados) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.DAY_OF_MONTH, diasAdicionados);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.DAY_OF_MONTH, diasAdicionados);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -244,17 +267,17 @@ public class ManipularDatas {
 
 	public static String removerDiaDoMes(String data, int diasRemovidos) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.DAY_OF_MONTH, -diasRemovidos);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.DAY_OF_MONTH, -diasRemovidos);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -266,17 +289,17 @@ public class ManipularDatas {
 
 	public static String adicionarDiaNaSemana(String data, int diasAdicionados) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.DAY_OF_WEEK, diasAdicionados);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.DAY_OF_WEEK, diasAdicionados);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -289,17 +312,17 @@ public class ManipularDatas {
 
 	public static String removerDiaDaSemana(String data, int diasRemovidos) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.DAY_OF_WEEK, -diasRemovidos);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.DAY_OF_WEEK, -diasRemovidos);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -311,17 +334,17 @@ public class ManipularDatas {
 
 	public static String adicionarDiaNoAno(String data, int diasAdicionados) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.DAY_OF_YEAR, diasAdicionados);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.DAY_OF_YEAR, diasAdicionados);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -333,17 +356,17 @@ public class ManipularDatas {
 
 	public static String removerDiaDoAno(String data, int diasRemovidos) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.DAY_OF_YEAR, -diasRemovidos);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.DAY_OF_YEAR, -diasRemovidos);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -355,17 +378,17 @@ public class ManipularDatas {
 
 	public static String adicionarHoras(String data, int horas) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.HOUR, horas);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.HOUR, horas);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -377,17 +400,17 @@ public class ManipularDatas {
 
 	public static String removerHoras(String data, int horas) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.HOUR, -horas);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.HOUR, -horas);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -399,17 +422,17 @@ public class ManipularDatas {
 
 	public static String adicionarMin(String data, int min) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.MINUTE, min);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.MINUTE, min);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -421,17 +444,17 @@ public class ManipularDatas {
 
 	public static String removerMin(String data, int min) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.MINUTE, -min);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.MINUTE, -min);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -443,17 +466,17 @@ public class ManipularDatas {
 
 	public static String adicionarSegundo(String data, int segundo) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.SECOND, segundo);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.SECOND, segundo);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
@@ -465,17 +488,17 @@ public class ManipularDatas {
 
 	public static String removerSegundo(String data, int segundo) {
 		try {
-			if(validarDiaEMes(data)==true){
-			String dataModificada;
-			Date date = sdf.parse(data);
+			if (validarData(data) == true) {
+				String dataModificada;
+				Date date = sdf.parse(data);
 
-			cal.setTime(date);
-			cal.add(Calendar.SECOND, -segundo);
-			date = cal.getTime();
+				cal.setTime(date);
+				cal.add(Calendar.SECOND, -segundo);
+				date = cal.getTime();
 
-			dataModificada = sdf.format(date);
-			return dataModificada;
-			}else{
+				dataModificada = sdf.format(date);
+				return dataModificada;
+			} else {
 				System.out.println("Data inválida");
 				return data;
 			}
