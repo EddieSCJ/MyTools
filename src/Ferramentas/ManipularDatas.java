@@ -33,7 +33,7 @@ public class ManipularDatas {
 		int mes = Integer.parseInt(data.substring(3,5));
 		int ano = Integer.parseInt(data.substring(6,8));
 		if(mes==2) {
-			if(ano%4==0 ) {
+			if(ano%4==0 && ano>=0) {
 				if(dia>=1 && dia<=29) {
 					return true;
 				} else {
@@ -47,9 +47,9 @@ public class ManipularDatas {
 				}
 			}
 			
-		}else if(ano%4!=0 && (mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12) && dia<=31 && dia>=1){
+		}else if(ano%4!=0 && (mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12) && dia<=31 && dia>=1 && ano>=0){
 			return true;
-		} else if(ano%4!=0 && (mes==2 || mes==4 || mes==6 || mes==8 || mes==11) && dia<=30 && dia>=1) {
+		} else if(ano%4!=0 && (mes==2 || mes==4 || mes==6 || mes==8 || mes==11) && dia<=30 && dia>=1 && ano>=0) {
 			return true;
 		} else {
 		return false;	
