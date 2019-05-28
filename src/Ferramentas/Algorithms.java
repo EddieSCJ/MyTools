@@ -5,6 +5,10 @@ import java.util.Iterator;
 
 public class Algorithms {
 
+	public static double raizX(double numero, double radical) {
+		return (Math.pow(numero, 1/radical));
+	}
+	
 	public static void quickSortInt(ArrayList<Integer> arrayList, int iniVet, int fimVet) {
 		int i = iniVet;
 		int j = fimVet - 1;
