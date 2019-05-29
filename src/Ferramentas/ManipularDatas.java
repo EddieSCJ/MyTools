@@ -28,10 +28,11 @@ public class ManipularDatas {
 	
 	public static boolean validarData(String data) {
 		//09/11/2001
-		try {
 		int dia = Integer.parseInt(data.substring(0,2));
 		int mes = Integer.parseInt(data.substring(3,5));
-		int ano = Integer.parseInt(data.substring(6,8));
+		int ano = Integer.parseInt(data.substring(6,10));
+		try {
+		
 		if(mes==2) {
 			if(ano%4==0 && ano>=0) {
 				if(dia>=1 && dia<=29) {
@@ -39,17 +40,18 @@ public class ManipularDatas {
 				} else {
 					return false;
 				}
-			} else {
-				if(dia>=1 && dia<=29){
+			} else if(ano>=0 && ano%4!=0){
+				if(dia>=1 && dia<=28){
 					return true;
 				}else {
 					return false;
 				}
+			} else {
+				return false;
 			}
-			
-		}else if(ano%4!=0 && (mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12) && dia<=31 && dia>=1 && ano>=0){
+		}else if((mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12) && dia<=31 && dia>=1 && ano>=0){
 			return true;
-		} else if(ano%4!=0 && (mes==2 || mes==4 || mes==6 || mes==8 || mes==11) && dia<=30 && dia>=1 && ano>=0) {
+		} else if((mes==2 || mes==4 || mes==6 || mes==9 || mes==11) && dia<=30 && dia>=1 && ano>=0) {
 			return true;
 		} else {
 		return false;	
