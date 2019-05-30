@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class ConferirDados {
 
 	public static boolean conferirCPF(String cpf) {
+		try {
 		boolean validez = true;
 
 		long d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11;
@@ -70,10 +71,13 @@ public class ConferirDados {
 		}
 
 		return validez;
-
+		}catch(Exception e) {
+			return false;
+		}
 	}
 
 	public static boolean conferirCNPJ(String cnpj) {
+		try {
 		char separar[] = cnpj.toCharArray();
 		ArrayList<Integer> CNPJ = new ArrayList<Integer>();
 		for (int i = 0; i < separar.length; i++) {
@@ -130,7 +134,12 @@ public class ConferirDados {
 		}else {
 			return false;
 		}
+			
+		}catch(Exception e) {
+			return false;
+		}
 		
-	}
+		}
 
+			
 }
